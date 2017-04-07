@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{3A9D1398-B8AA-4EC4-8397-32D8B5C20334}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="PingSrvc.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Pinguchka.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="PingSrvc">
+        <MSBuild Projects="PingSrvc.dproj"/>
+    </Target>
+    <Target Name="PingSrvc:Clean">
+        <MSBuild Projects="PingSrvc.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PingSrvc:Make">
+        <MSBuild Projects="PingSrvc.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Pinguchka">
+        <MSBuild Projects="Pinguchka.dproj"/>
+    </Target>
+    <Target Name="Pinguchka:Clean">
+        <MSBuild Projects="Pinguchka.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Pinguchka:Make">
+        <MSBuild Projects="Pinguchka.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="PingSrvc;Pinguchka"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="PingSrvc:Clean;Pinguchka:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="PingSrvc:Make;Pinguchka:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
